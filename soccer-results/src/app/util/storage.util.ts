@@ -3,14 +3,16 @@ import { LeagueModel, StandingModel, StandingsResponseModel } from "../model/mod
 
 export default class StorageUtils {
     static writeToStorage(keyName: string, ratingsToSave: Map<number, StandingModel[]>){
-        localStorage.setItem(keyName, JSON.stringify(ratingsToSave));
+        console.log("saving data to storage")
+        var x = JSON.stringify(Array.from(ratingsToSave.entries()));
+        localStorage.setItem(keyName, x);
     }
 
     static readFromStorage(keyName: string): Map<number, StandingModel[]> | undefined{
         try{
             const data = localStorage.getItem(keyName);
             if(data != null && data != undefined && data != "undefined"){;
-                return JSON.parse(data!);
+                return new Map(JSON.parse(data!));
             }
             else{
                 console.log("Nothing in local storage with key " + keyName);

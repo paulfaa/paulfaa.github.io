@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StandingsDisplayComponent } from './standings-display/standings-display.component';
+import { CountryPickerComponent } from './country-picker/country-picker.component';
 
 const routes: Routes = [
-  { path: '', component: StandingsDisplayComponent}
+  { path: '', component: CountryPickerComponent}
 ];
 
 @NgModule({

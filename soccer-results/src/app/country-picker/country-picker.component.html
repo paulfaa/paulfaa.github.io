@@ -1,9 +1,13 @@
 <h1>Football Updates</h1>
 
-<mat-button-toggle-group name="countrySelected" aria-label="Country selected">
-    <mat-button-toggle (click)="onCountrySelected(39)" id="englandSelect">England</mat-button-toggle>
-    <mat-button-toggle (click)="onCountrySelected(107)" id="spainSelect">Spain</mat-button-toggle>
-    <mat-button-toggle (click)="onCountrySelected(78)" id="germanySelect">Germany</mat-button-toggle>
-    <mat-button-toggle (click)="onCountrySelected(61)" id="franceSelect">France</mat-button-toggle>
-    <mat-button-toggle (click)="onCountrySelected(135)" id="italySelect">Italy</mat-button-toggle>
+<div class="center">
+  <mat-button-toggle-group name="countrySelected" aria-label="Country selected" value="englandSelect">
+      <mat-button-toggle (click)="onCountrySelected(39)" id="englandSelect">England</mat-button-toggle>
+      <mat-button-toggle (click)="onCountrySelected(107)" id="spainSelect">Spain</mat-button-toggle>
+      <mat-button-toggle (click)="onCountrySelected(78)" id="germanySelect">Germany</mat-button-toggle>
+      <mat-button-toggle (click)="onCountrySelected(61)" id="franceSelect">France</mat-button-toggle>
+      <mat-button-toggle (click)="onCountrySelected(135)" id="italySelect">Italy</mat-button-toggle>
   </mat-button-toggle-group>
+</div>
+
+<app-standings-grid [selectedLeagueId]="selectedLeagueId"></app-standings-grid>

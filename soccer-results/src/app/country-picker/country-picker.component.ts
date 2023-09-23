@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { StandingsService } from '../service/standings.service';
 
 @Component({
   selector: 'app-country-picker',
@@ -9,11 +8,12 @@ import { StandingsService } from '../service/standings.service';
 export class CountryPickerComponent {
 
   @Output() countrySelected = new EventEmitter<number>();
-
-  constructor(private standingsService: StandingsService) {}
+  public selectedLeagueId: number | undefined;
 
   onCountrySelected(leagueId: number) {
     console.log(leagueId)
-    this.standingsService.callStandingsEndpoint(leagueId);
+    this.selectedLeagueId = leagueId;
+    this.countrySelected.emit(this.selectedLeagueId);
+    console.log("emitting: ", leagueId)
   }
 }

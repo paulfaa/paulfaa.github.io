@@ -9,14 +9,12 @@ import {MatTableModule} from '@angular/material/table';
 
 import { StandingsGridComponent } from './standings-grid/standings-grid.component';
 import { HttpClientModule } from '@angular/common/http';
-import { StandingsDisplayComponent } from './standings-display/standings-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountryPickerComponent,
     StandingsGridComponent,
-    StandingsDisplayComponent,
   ],
   imports: [
     BrowserModule,
