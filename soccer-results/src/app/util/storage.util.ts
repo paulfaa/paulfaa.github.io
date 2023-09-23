@@ -1,4 +1,4 @@
-import { LeagueModel, StandingModel, StandingsResponseModel } from "../model/models";
+import { StandingModel } from "../model/models";
 
 
 export default class StorageUtils {

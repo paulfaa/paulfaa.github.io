@@ -1,6 +1,8 @@
 <div>
   <div *ngFor="let standing of standings$ | async">
     {{ standing.rank }}
+    <!-- <a routerLink="/results/{{standing?.team?.id}}">Click here for team results</a>
+    <a [routerLink]="['/results',standing?.team?.id]">Click here for team results</a> -->
   </div>
 </div>
 
@@ -16,7 +18,7 @@
 
       <ng-container matColumnDef="icon">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element"> {{element?.team?.icon | async}}  </td>
+          <td mat-cell *matCellDef="let element"> {{element?.team?.icon | async}} </td>
         </ng-container>
     
       <ng-container matColumnDef="name">
@@ -26,32 +28,32 @@
     
       <ng-container matColumnDef="games">
         <th mat-header-cell *matHeaderCellDef> Games </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.all.played}} </td>
       </ng-container>
     
       <ng-container matColumnDef="wins">
         <th mat-header-cell *matHeaderCellDef> W </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.all.win}} </td>
       </ng-container>
 
       <ng-container matColumnDef="losses">
           <th mat-header-cell *matHeaderCellDef> L </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.all.lose}} </td>
       </ng-container>
 
       <ng-container matColumnDef="draws">
           <th mat-header-cell *matHeaderCellDef> D </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.all.draw}} </td>
       </ng-container>
 
       <ng-container matColumnDef="goalDifference">
           <th mat-header-cell *matHeaderCellDef> Goal Difference </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.goalsDiff}} </td>
       </ng-container>
 
       <ng-container matColumnDef="points">
           <th mat-header-cell *matHeaderCellDef> Points </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.points}} </td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

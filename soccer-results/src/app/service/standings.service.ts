@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, Observable, catchError, filter, map, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, catchError, filter, map, of, switchMap, take, tap } from 'rxjs';
 
 import StorageUtils from '../util/storage.util';
 import { StandingModel, StandingsResponseModel } from '../model/models';
@@ -30,6 +30,7 @@ export class StandingsService {
       return this.httpClient.get<StandingsResponseModel>(standingsUrl, { headers: this.getRequiredHeaders()})
       .pipe(
         map(result => result.response[0].league.standings as StandingModel[]),
+        take(10),
         tap(data => {
           this.storedStandings.set(leagueId, data)
           console.log("standings from server: ", data)

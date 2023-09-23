@@ -6,22 +6,26 @@ import { AppComponent } from './app.component';
 import { CountryPickerComponent } from './country-picker/country-picker.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
 
 import { StandingsGridComponent } from './standings-grid/standings-grid.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountryPickerComponent,
     StandingsGridComponent,
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatButtonToggleModule,
     MatTableModule,
-    HttpClientModule 
+    HttpClientModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
