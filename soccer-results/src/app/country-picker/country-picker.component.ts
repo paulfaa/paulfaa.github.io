@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { StandingsService } from '../standings.service';
+import { StandingsService } from '../service/standings.service';
 
 @Component({
   selector: 'app-country-picker',
@@ -16,7 +14,6 @@ export class CountryPickerComponent {
 
   onCountrySelected(leagueId: number) {
     console.log(leagueId)
-    this.standingsService.getStandingsForLeage(leagueId);
-    //this.countrySelected.emit(leagueId);
+    this.standingsService.callStandingsEndpoint(leagueId);
   }
 }

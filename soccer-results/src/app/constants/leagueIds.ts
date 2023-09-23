@@ -1,4 +1,4 @@
-enum LeagueId {
+export enum LeagueId {
     premierLeague = 39,
     laLiga = 107,
     ligue1= 61,

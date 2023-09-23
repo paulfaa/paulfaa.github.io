@@ -1,26 +1,9 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { StandingsService } from '../standings.service';
+import { Observable, Subscription, map } from 'rxjs';
+import { StandingsService } from '../service/standings.service';
+import { LeagueModel, StandingModel, StandingsResponseModel } from '../model/models';
+import { MatTableDataSource } from '@angular/material/table';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 
 @Component({
   selector: 'app-standings-grid',
@@ -29,13 +12,25 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class StandingsGridComponent {
 
-  public dataSource = ELEMENT_DATA;
   public displayedColumns: string[] = ['position', 'icon', 'name', 'games', 'wins', 'losses', 'draws', 'goalDifference', 'points'];
-  //public standingsSubscription$: Observable<StandingsData>
+  public standings$?: Observable<StandingModel[]>
+  //private dataSource = new MatTableDataSource<StandingModel>();
 
-  constructor(private standingsService: StandingsService){}
+  constructor(private standingsService: StandingsService){
+  }
 
-  ngOnInit() {
-    //this.standingsSubscription$ = this.standingsService.getStandingsForLeague();
+  // standingsAsMatTableDataSource$: Observable<MatTableDataSource<StandingModel>> =
+  //   this.standingsService.getStandings(39).pipe(
+  //     map((standings) => {
+  //       const dataSource = this.dataSource;
+  //       dataSource.data = standings
+  //       return dataSource;
+  //     })
+  // );
+
+  ngOnInit(){
+    this.standings$ = this.standingsService.standings$;
+    this.standingsService.callStandingsEndpoint(39);
+    
   }
 }

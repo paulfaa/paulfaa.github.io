@@ -16,7 +16,7 @@ import { StandingsDisplayComponent } from './standings-display/standings-display
     AppComponent,
     CountryPickerComponent,
     StandingsGridComponent,
-    StandingsDisplayComponent
+    StandingsDisplayComponent,
   ],
   imports: [
     BrowserModule,
