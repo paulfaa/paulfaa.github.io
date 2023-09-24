@@ -10,14 +10,14 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { StandingsGridComponent } from './standings-grid/standings-grid.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ResultsComponent } from './results/results.component';
+import { FixturesComponent } from './fixtures/fixtures.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountryPickerComponent,
     StandingsGridComponent,
-    ResultsComponent,
+    FixturesComponent,
   ],
   imports: [
     BrowserModule,

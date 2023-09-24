@@ -1,0 +1,54 @@
+<ng-container *ngIf="fixtures$ | async as fixturesData; else loading">
+
+    <table mat-table [dataSource]="fixturesData" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="homeIcon">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let fixture">
+                <img [src]="fixture.teams.home.logo" alt="Home Team Logo" width="30" height="30" />
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="homeTeam">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let fixture"> {{fixture.teams.home.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="homeScore">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let fixture"> {{fixture.goals.home}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="divider">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let fixture"> - </td>
+        </ng-container>
+
+        <ng-container matColumnDef="awayScore">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let fixture"> {{fixture.goals.away}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="awayTeam">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let fixture"> {{fixture.teams.away.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="awayIcon">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let fixture">
+                <img [src]="fixture.teams.away.logo" alt="Away Team Logo" width="30" height="30"/>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</ng-container>
+
+<ng-template #loading>
+    <div class="loading">Loading...</div>
+</ng-template>
+
+
+<button mat-button (click)="goBack()">Go back</button>

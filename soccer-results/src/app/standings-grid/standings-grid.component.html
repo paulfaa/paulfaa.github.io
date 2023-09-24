@@ -4,53 +4,53 @@
 
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
+        <td mat-cell *matCellDef="let standing"> {{standing.rank}} </td>
       </ng-container>
 
       <ng-container matColumnDef="icon">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <img [src]="element.team.logo" alt="Team Logo" width="30" height="30" />
+          <td mat-cell *matCellDef="let standing">
+            <img [src]="standing.team.logo" alt="Team Logo" width="30" height="30" />
           </td>
         </ng-container>
     
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element">
-          <a [routerLink]="['/results',element.team.id]">
-            {{element.team.name}}
+        <td mat-cell *matCellDef="let standing">
+          <a [routerLink]="['/fixtures',standing.team.id]">
+            {{standing.team.name}}
           </a>
         </td>
       </ng-container>
     
       <ng-container matColumnDef="games">
         <th mat-header-cell *matHeaderCellDef> Games </th>
-        <td mat-cell *matCellDef="let element"> {{element.all.played}} </td>
+        <td mat-cell *matCellDef="let standing"> {{standing.all.played}} </td>
       </ng-container>
     
       <ng-container matColumnDef="wins">
         <th mat-header-cell *matHeaderCellDef> W </th>
-        <td mat-cell *matCellDef="let element"> {{element.all.win}} </td>
+        <td mat-cell *matCellDef="let standing"> {{standing.all.win}} </td>
       </ng-container>
 
       <ng-container matColumnDef="losses">
           <th mat-header-cell *matHeaderCellDef> L </th>
-          <td mat-cell *matCellDef="let element"> {{element.all.lose}} </td>
+          <td mat-cell *matCellDef="let standing"> {{standing.all.lose}} </td>
       </ng-container>
 
       <ng-container matColumnDef="draws">
           <th mat-header-cell *matHeaderCellDef> D </th>
-          <td mat-cell *matCellDef="let element"> {{element.all.draw}} </td>
+          <td mat-cell *matCellDef="let standing"> {{standing.all.draw}} </td>
       </ng-container>
 
       <ng-container matColumnDef="goalDifference">
           <th mat-header-cell *matHeaderCellDef> Goal Difference </th>
-          <td mat-cell *matCellDef="let element"> {{element.goalsDiff}} </td>
+          <td mat-cell *matCellDef="let standing"> {{standing.goalsDiff}} </td>
       </ng-container>
 
       <ng-container matColumnDef="points">
           <th mat-header-cell *matHeaderCellDef> Points </th>
-          <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+          <td mat-cell *matCellDef="let standing"> {{standing.points}} </td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

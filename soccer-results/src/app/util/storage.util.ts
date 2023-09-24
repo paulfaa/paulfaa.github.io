@@ -1,14 +1,14 @@
-import { StandingModel } from "../model/models";
+import { StandingsModel } from "../model/models";
 
 
 export default class StorageUtils {
-    static writeToStorage(keyName: string, ratingsToSave: Map<number, StandingModel[]>){
+    static writeToStorage(keyName: string, ratingsToSave: Map<number, StandingsModel[]>){
         console.log("saving data to storage")
         var x = JSON.stringify(Array.from(ratingsToSave.entries()));
         localStorage.setItem(keyName, x);
     }
 
-    static readFromStorage(keyName: string): Map<number, StandingModel[]> | undefined{
+    static readFromStorage(keyName: string): Map<number, StandingsModel[]> | undefined{
         try{
             const data = localStorage.getItem(keyName);
             if(data != null && data != undefined && data != "undefined"){;

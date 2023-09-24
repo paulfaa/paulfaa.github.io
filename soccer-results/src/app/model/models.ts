@@ -9,16 +9,16 @@ export interface LeagueDetailsModel {
     logo: string;
     flag: string;
     season: number;
-    standings: StandingModel[][];
+    standings: StandingsModel[][];
 }
 
 export interface LeagueModel {
     league: LeagueDetailsModel;
 }
 
-export interface StandingModel {
+export interface StandingsModel {
     rank: number;
-    team: TeamModel;
+    team: StandingsTeamModel;
     points: number;
     goalsDiff: number;
     all: AllMatchesPlayedModel;
@@ -32,8 +32,46 @@ export interface AllMatchesPlayedModel {
     lose: number;
 }
 
-export interface TeamModel {
+export interface StandingsTeamModel {
     id: number;
     name: string;
     logo: string;
+}
+
+export interface FixtureResponseModel {
+    response: FixtureDetailsModel[];
+}
+
+export interface FixtureDetailsModel {
+    fixture: FixtureModel;
+    league: FixtureLeagueModel;
+    teams: FixtureTeamsModel;
+    goals: GoalsModel;
+}
+
+export interface FixtureModel {
+    id: number;
+    date: Date;
+}
+
+export interface GoalsModel {
+    home: number;
+    away: number;
+}
+
+export interface FixtureTeamsModel {
+    home: FixtureTeamModel;
+    away: FixtureTeamModel;
+}
+
+export interface FixtureTeamModel {
+    id: number;
+    name: string;
+    logo: string;
+    winner: boolean;
+}
+
+export interface FixtureLeagueModel {
+    id: number;
+    name: string;
 }

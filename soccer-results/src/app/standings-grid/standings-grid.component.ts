@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, SimpleChanges } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { StandingsService } from '../service/standings.service';
-import { StandingModel } from '../model/models';
+import { StandingsModel } from '../model/models';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,11 +13,11 @@ export class StandingsGridComponent implements OnDestroy {
   @Input() selectedLeagueId: number | undefined;
   public countryClicked: boolean;
   public routeSubscription: Subscription;
-  public standings$: Observable<StandingModel[]>
+  public standings$: Observable<StandingsModel[]>
   public displayedColumns: string[] = ['position', 'icon', 'name', 'games', 'wins', 'losses', 'draws', 'goalDifference', 'points'];
 
   constructor(private standingsService: StandingsService, private route: ActivatedRoute){
-    this.standings$ = new Observable<StandingModel[]>();
+    this.standings$ = new Observable<StandingsModel[]>();
     this.routeSubscription = new Subscription();
     this.countryClicked = false;
   }
