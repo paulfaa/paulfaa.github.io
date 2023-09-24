@@ -21,7 +21,7 @@ export class FixturesComponent {
   ngOnInit(){
     this.selectedTeamId = parseInt(this.activatedRoute.snapshot.paramMap.get('teamId')!);
     this.fixtures$ = this.standingsService.getFixturesForTeam(this.selectedTeamId).pipe(
-      tap(data => this.selectedLeagueId = data[0].league.id)
+      tap(data => this.selectedLeagueId = data[0]?.league?.id)
     );
   }
 

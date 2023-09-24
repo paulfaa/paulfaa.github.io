@@ -1,4 +1,7 @@
-<h1>Recent fixtures</h1>
+<mat-toolbar color="primary">
+    <span>Recent fixtures</span>
+</mat-toolbar>
+
 <ng-container *ngIf="fixtures$ | async as fixturesData; else loading">
 
     <table mat-table [dataSource]="fixturesData" class="fixtures-table">
