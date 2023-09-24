@@ -9,7 +9,7 @@ export interface LeagueDetailsModel {
     logo: string;
     flag: string;
     season: number;
-    standings: StandingModel[];
+    standings: StandingModel[][];
 }
 
 export interface LeagueModel {

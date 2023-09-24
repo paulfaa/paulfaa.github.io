@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StandingsGridComponent implements OnDestroy {
   @Input() selectedLeagueId: number | undefined;
+  public countryClicked: boolean;
   public routeSubscription: Subscription;
   public standings$: Observable<StandingModel[]>
   public displayedColumns: string[] = ['position', 'icon', 'name', 'games', 'wins', 'losses', 'draws', 'goalDifference', 'points'];
@@ -18,20 +19,23 @@ export class StandingsGridComponent implements OnDestroy {
   constructor(private standingsService: StandingsService, private route: ActivatedRoute){
     this.standings$ = new Observable<StandingModel[]>();
     this.routeSubscription = new Subscription();
+    this.countryClicked = false;
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['selectedLeagueId'] && changes['selectedLeagueId'].currentValue !== undefined) {
+      this.countryClicked = true;
       console.log("changes detected, calling api")
       this.standings$ = this.standingsService.getStandingsForLeague(changes['selectedLeagueId'].currentValue);
     }
   }
 
   ngOnInit(){
+    //this.standingsService.getStandingsForLeague(107).subscribe(data => console.log("data returned from subscription:", data))
     this.routeSubscription = this.route.queryParams.subscribe((queryParams) => {
       if (queryParams['leagueId']) {
         console.log("naviated to standings with queryParam, call API")
-        this.standings$ = this.standingsService.getStandingsForLeague(39);
+        this.standings$ = this.standingsService.getStandingsForLeague(queryParams['leagueId']);
       }
     });
   }

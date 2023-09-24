@@ -1,29 +1,24 @@
-<div>
-  <div *ngFor="let standing of standings$ | async">
-    {{ standing.rank }}
-    <!-- <a routerLink="/results/{{standing?.team?.id}}">Click here for team results</a>
-    <a [routerLink]="['/results',standing?.team?.id]">Click here for team results</a> -->
-  </div>
-</div>
-
 <ng-container *ngIf="standings$ | async as standingsData; else loading">
-  <div>Show data in table...</div>
   
   <table mat-table [dataSource]="standingsData" class="mat-elevation-z8">
 
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"> {{element.rank | async}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
       </ng-container>
 
       <ng-container matColumnDef="icon">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element"> {{element?.team?.icon | async}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.team.icon}} </td>
         </ng-container>
     
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element?.team?.name}} </td>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/results',element.team.id]">
+            {{element.team.name}}
+          </a>
+        </td>
       </ng-container>
     
       <ng-container matColumnDef="games">
@@ -62,5 +57,5 @@
 </ng-container>
 
 <ng-template #loading>
-  <div class="loading">Loading...</div>
+  <div *ngIf="countryClicked" class="loading">Loading...</div>
 </ng-template>

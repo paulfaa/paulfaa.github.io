@@ -29,7 +29,7 @@ export class StandingsService {
       console.log("calling API at ", standingsUrl);
       return this.httpClient.get<StandingsResponseModel>(standingsUrl, { headers: this.getRequiredHeaders()})
       .pipe(
-        map(result => result.response[0].league.standings as StandingModel[]),
+        map(result => result.response[0].league.standings[0] as StandingModel[]),
         take(10),
         tap(data => {
           this.storedStandings.set(leagueId, data)
