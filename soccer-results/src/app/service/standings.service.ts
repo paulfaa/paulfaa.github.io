@@ -11,7 +11,7 @@ import { FixtureDetailsModel, FixtureResponseModel, StandingsModel, StandingsRes
 export class StandingsService {
 
   private apiKey: string = "a13aeafb7b7f6b9c41c212b3197aa43c";
-  private baseUrl: string = "https://v3.football.api-sports.io"
+  private baseUrl: string = "https://v3.football.api-sports.io";
   private storedStandings: Map<number, StandingsModel[]>;
 
   constructor(private httpClient: HttpClient) {
@@ -30,10 +30,10 @@ export class StandingsService {
       return this.httpClient.get<StandingsResponseModel>(standingsUrl, { headers: this.getRequiredHeaders() })
         .pipe(
           map(result => result.response[0].league.standings[0] as StandingsModel[]),
-          take(10),
-          tap(data => {
-            this.storedStandings.set(leagueId, data)
-            console.log("standings from server: ", data)
+          map(StandingsModels => StandingsModels.slice(0, 10)),
+          tap(StandingsModels => {
+            this.storedStandings.set(leagueId, StandingsModels)
+            console.log("standings from server: ", StandingsModels)
             StorageUtils.writeToStorage("standings", this.storedStandings)
           })
         )
