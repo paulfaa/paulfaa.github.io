@@ -10,7 +10,7 @@ export class CountryPickerComponent {
   @Output() countrySelected = new EventEmitter<number>();
   public selectedLeagueId: number | undefined;
 
-  onCountrySelected(leagueId: number) {
+  onCountrySelected(leagueId: number): void {
     this.selectedLeagueId = leagueId;
     this.countrySelected.emit(this.selectedLeagueId);
     console.log("emitting leagueId: ", leagueId)

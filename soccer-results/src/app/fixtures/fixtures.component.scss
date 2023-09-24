@@ -1,5 +1,16 @@
+h1 {
+    text-align: center;
+    padding-top: 25px;
+}
 .loading{
     padding-top: 35px;
     display: flex;
     justify-content: center;
+}
+.table-container {
+    height: 400px; 
+    overflow-y: auto;
+}
+.back-button {
+    padding: 15px;
 }

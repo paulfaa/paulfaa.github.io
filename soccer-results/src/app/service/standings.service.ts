@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, filter, map, of, take, tap } from 'rxjs';
+import { Observable, map, of, take, tap } from 'rxjs';
 
 import StorageUtils from '../util/storage.util';
 import { FixtureDetailsModel, FixtureResponseModel, StandingsModel, StandingsResponseModel } from '../model/models';
@@ -10,8 +10,8 @@ import { FixtureDetailsModel, FixtureResponseModel, StandingsModel, StandingsRes
 })
 export class StandingsService {
 
-  private apiKey = "a13aeafb7b7f6b9c41c212b3197aa43c";
-  private baseUrl = "https://v3.football.api-sports.io"
+  private apiKey: string = "a13aeafb7b7f6b9c41c212b3197aa43c";
+  private baseUrl: string = "https://v3.football.api-sports.io"
   private storedStandings: Map<number, StandingsModel[]>;
 
   constructor(private httpClient: HttpClient) {
@@ -45,9 +45,6 @@ export class StandingsService {
     console.log("calling fixtures API at ", fixturesUrl);
     return this.httpClient.get<FixtureResponseModel>(fixturesUrl, { headers: this.getRequiredHeaders() })
         .pipe(
-          tap(data => {
-            console.log("data before map: ", data)
-          }),
           map(data => data.response.filter(fixture => fixture.teams.home.id == teamId || fixture.teams.away.id == teamId)),
           tap(data => {
             console.log("data after map: ", data)

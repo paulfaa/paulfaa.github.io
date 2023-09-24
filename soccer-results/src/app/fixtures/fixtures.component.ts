@@ -11,8 +11,8 @@ import { StandingsService } from '../service/standings.service';
 })
 export class FixturesComponent {
 
-  private selectedTeamId: number = 0;
-  private selectedLeagueId: number = 0;
+  private selectedTeamId?: number;
+  private selectedLeagueId?: number;
   public fixtures$?: Observable<FixtureDetailsModel[]>
   public displayedColumns: string[] = ['homeIcon', 'homeTeam', 'homeScore', 'divider', 'awayScore', 'awayTeam', 'awayIcon'];
 
@@ -27,6 +27,5 @@ export class FixturesComponent {
 
   public goBack(): void {
     this.router.navigate(['standings'],{queryParams:{leagueId:this.selectedLeagueId}})
-    //this.router.navigateByUrl('/standings/69')
   }
 }
