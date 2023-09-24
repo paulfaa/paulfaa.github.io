@@ -9,7 +9,9 @@
 
       <ng-container matColumnDef="icon">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element"> {{element.team.icon}} </td>
+          <td mat-cell *matCellDef="let element">
+            <img [src]="element.team.logo" alt="Team Logo" width="30" height="30" />
+          </td>
         </ng-container>
     
       <ng-container matColumnDef="name">

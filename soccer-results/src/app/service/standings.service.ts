@@ -44,7 +44,7 @@ export class StandingsService {
     if(this.storedStandings.has(leagueId)){
       const updateTime = new Date(this.storedStandings.get(leagueId)![0].update).getTime();
       const currentTime = new Date().getTime();
-      if(currentTime - updateTime >= 86400000){ //considered current if less than 24 hours old
+      if(currentTime - updateTime <= 86400000){ //considered current if less than 24 hours old
         return true;
       }
     }

@@ -11,9 +11,8 @@ export class CountryPickerComponent {
   public selectedLeagueId: number | undefined;
 
   onCountrySelected(leagueId: number) {
-    console.log(leagueId)
     this.selectedLeagueId = leagueId;
     this.countrySelected.emit(this.selectedLeagueId);
-    console.log("emitting: ", leagueId)
+    console.log("emitting leagueId: ", leagueId)
   }
 }

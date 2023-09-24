@@ -25,13 +25,12 @@ export class StandingsGridComponent implements OnDestroy {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['selectedLeagueId'] && changes['selectedLeagueId'].currentValue !== undefined) {
       this.countryClicked = true;
-      console.log("changes detected, calling api")
+      console.log("changes detected, calling getStandingsForLeague()")
       this.standings$ = this.standingsService.getStandingsForLeague(changes['selectedLeagueId'].currentValue);
     }
   }
 
   ngOnInit(){
-    //this.standingsService.getStandingsForLeague(107).subscribe(data => console.log("data returned from subscription:", data))
     this.routeSubscription = this.route.queryParams.subscribe((queryParams) => {
       if (queryParams['leagueId']) {
         console.log("naviated to standings with queryParam, call API")
