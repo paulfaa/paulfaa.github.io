@@ -22,19 +22,11 @@ export class StandingsGridComponent implements OnDestroy {
     this.countryClicked = false;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['selectedLeagueId'] && changes['selectedLeagueId'].currentValue !== undefined) {
-      this.countryClicked = true;
-      console.log("changes detected, calling getStandingsForLeague()")
-      this.standings$ = this.standingsService.getStandingsForLeague(changes['selectedLeagueId'].currentValue);
-    }
-  }
-
   ngOnInit(){
     this.routeSubscription = this.route.queryParams.subscribe((queryParams) => {
       if (queryParams['leagueId']) {
-        console.log("naviated to standings with queryParam, call API")
-        this.standings$ = this.standingsService.getStandingsForLeague(queryParams['leagueId']);
+        console.log("naviated to standings with queryParam, check if data needs update")
+        this.standings$ = this.standingsService.getStandingsForLeague(parseInt(queryParams['leagueId']));
       }
     });
   }
@@ -45,7 +37,7 @@ export class StandingsGridComponent implements OnDestroy {
     }
   }
 
-  public callApi(leagueId: number){
+  public callApi(leagueId: number): void{
     this.standings$ = this.standingsService.getStandingsForLeague(leagueId);
   }
 }

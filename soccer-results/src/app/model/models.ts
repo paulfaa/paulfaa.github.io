@@ -75,3 +75,9 @@ export interface FixtureLeagueModel {
     id: number;
     name: string;
 }
+
+export interface ButtonContents {
+    buttonText: string;
+    leagueId: number;
+    buttonId: string;
+}

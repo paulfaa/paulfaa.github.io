@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, map, of, take, tap } from 'rxjs';
+import { Observable, map, of, tap } from 'rxjs';
 
 import StorageUtils from '../util/storage.util';
 import { FixtureDetailsModel, FixtureResponseModel, StandingsModel, StandingsResponseModel } from '../model/models';
@@ -13,6 +13,7 @@ export class StandingsService {
   private apiKey: string = "a13aeafb7b7f6b9c41c212b3197aa43c";
   private baseUrl: string = "https://v3.football.api-sports.io";
   private storedStandings: Map<number, StandingsModel[]>;
+  private twoDaysInMs: number = 172800000;
 
   constructor(private httpClient: HttpClient) {
     this.storedStandings = new Map<number, StandingsModel[]>();
@@ -58,7 +59,7 @@ export class StandingsService {
     if (this.storedStandings.has(leagueId)) {
       const updateTime = new Date(this.storedStandings.get(leagueId)![0].update).getTime();
       const currentTime = new Date().getTime();
-      if (currentTime - updateTime <= 86400000) { //considered current if less than 24 hours old
+      if (currentTime - updateTime <= this.twoDaysInMs) { //considered current if less than 48 hours old
         return true;
       }
     }
