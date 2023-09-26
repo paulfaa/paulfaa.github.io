@@ -35,7 +35,7 @@ export class StandingsService {
           tap(StandingsModels => {
             if(StandingsModels != undefined){
               this.storedStandings.set(leagueId, StandingsModels)
-              StorageUtils.writeToStorage("standings", this.storedStandings)
+              StorageUtils.writeRatingsToStorage(this.storedStandings)
             }
             console.log("standings from server: ", StandingsModels)
           })
@@ -78,7 +78,7 @@ export class StandingsService {
   }
 
   private loadSavedStandings(): void {
-    const savedStandings = StorageUtils.readFromStorage('standings');
+    const savedStandings = StorageUtils.readRatingsFromStorage();
     if (savedStandings && savedStandings?.size >= 1) {
       console.log("loading saved standings")
       this.storedStandings = savedStandings;

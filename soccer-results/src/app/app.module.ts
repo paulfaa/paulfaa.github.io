@@ -8,6 +8,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { FormsModule } from '@angular/forms';
 
 import { StandingsGridComponent } from './standings-grid/standings-grid.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,7 +28,8 @@ import { FixturesComponent } from './fixtures/fixtures.component';
     MatTableModule,
     HttpClientModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

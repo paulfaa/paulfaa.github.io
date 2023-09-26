@@ -4,7 +4,7 @@
 
 <div class="center">
   <mat-button-toggle-group name="countrySelected" aria-label="Country selected">
-    <mat-button-toggle matRipple *ngFor="let country of countryButtons" [id]="country.buttonId + 'Select'" (click)="onCountrySelected(country.leagueId)">
+    <mat-button-toggle matRipple *ngFor="let country of countryButtons" [id]="country.buttonId + 'Select'" (click)="onCountrySelected(country.leagueId)" [checked]="selectedLeagueId === country.leagueId">
       {{ country.buttonText }}
     </mat-button-toggle>
   </mat-button-toggle-group>

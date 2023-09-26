@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { StandingsService } from '../service/standings.service';
 import { StandingsModel } from '../model/models';
 import { ActivatedRoute } from '@angular/router';
+import StorageUtils from '../util/storage.util';
 
 @Component({
   selector: 'app-standings-grid',
@@ -25,10 +26,15 @@ export class StandingsGridComponent implements OnDestroy {
   ngOnInit(){
     this.routeSubscription = this.route.queryParams.subscribe((queryParams) => {
       if (queryParams['leagueId']) {
-        console.log("naviated to standings with queryParam, check if data needs update")
+        console.log("navigated to standings with queryParam, check if data needs update")
         this.standings$ = this.standingsService.getStandingsForLeague(parseInt(queryParams['leagueId']));
       }
     });
+    const storedLeagueId = StorageUtils.readLeagueIdFromStorage();
+    if(storedLeagueId){
+      console.log("reading league id from storage");
+      this.callApi(storedLeagueId);
+    }
   }
 
   ngOnDestroy(): void {

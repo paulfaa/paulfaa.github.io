@@ -1,21 +1,38 @@
 import { StandingsModel } from "../model/models";
 
-
 export default class StorageUtils {
-    static writeToStorage(keyName: string, ratingsToSave: Map<number, StandingsModel[]>){
-        console.log("saving data to storage")
-        var x = JSON.stringify(Array.from(ratingsToSave.entries()));
-        localStorage.setItem(keyName, x);
+
+    private static ratingsKey: string = "ratings";
+    private static leagueIdKey: string = "leagueId";
+
+    static writeLeagueIdToStorage(leagueId: number): void {
+        localStorage.setItem(StorageUtils.leagueIdKey, leagueId.toString());
     }
 
-    static readFromStorage(keyName: string): Map<number, StandingsModel[]> | undefined{
+    static readLeagueIdFromStorage(): number | undefined{
+        const result = localStorage.getItem(this.leagueIdKey);
+        if(result){
+            return parseInt(result);
+        } 
+        else{
+            return undefined;
+        }
+    }
+
+    static writeRatingsToStorage(ratingsToSave: Map<number, StandingsModel[]>): void{
+        console.log("saving data to storage")
+        const ratings = JSON.stringify(Array.from(ratingsToSave.entries()));
+        localStorage.setItem(StorageUtils.ratingsKey, ratings);
+    }
+
+    static readRatingsFromStorage(): Map<number, StandingsModel[]> | undefined{
         try{
-            const data = localStorage.getItem(keyName);
+            const data = localStorage.getItem(StorageUtils.ratingsKey);
             if(data != null && data != undefined && data != "undefined"){;
                 return new Map(JSON.parse(data!));
             }
             else{
-                console.log("Nothing in local storage with key " + keyName);
+                console.log("Nothing in local storage with key: ", StorageUtils.ratingsKey);
                 return undefined;
             }
         }
